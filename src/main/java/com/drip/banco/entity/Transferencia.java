@@ -14,15 +14,15 @@ public class Transferencia {
     @Column(name = "id")
     Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_conta_origem")
     Conta contaOrigem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_conta_destino")
     Conta contaDestino;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_tipo_transferencia")
     TipoTransaferencia tipo;
 

@@ -32,12 +32,9 @@ public class TransferenciaController {
         try{
             return  ResponseEntity.status(HttpStatus.OK)
                     .body(service.realizarTrasferencia(idContaOrigem,idContaDestino,transferenciaRequest));
-        }catch (ContaException e){
+        }catch (ContaException|TipoTrasnferenciaException e){
            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }catch (TipoTrasnferenciaException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-
     }
 
 }

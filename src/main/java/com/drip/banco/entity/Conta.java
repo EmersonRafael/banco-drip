@@ -14,11 +14,11 @@ public class Conta {
     @Column(name = "id")
     Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
     Cliente cliente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_banco")
     Banco banco;
 

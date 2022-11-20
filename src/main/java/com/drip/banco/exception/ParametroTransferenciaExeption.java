@@ -1,7 +1,7 @@
 package com.drip.banco.exception;
 
 public class ParametroTransferenciaExeption    extends RuntimeException {
-    private String message;
+    String message;
     public ParametroTransferenciaExeption() {}
     public ParametroTransferenciaExeption(String msg)
     {

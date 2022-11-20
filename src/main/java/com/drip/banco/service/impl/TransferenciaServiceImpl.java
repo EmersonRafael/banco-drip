@@ -33,7 +33,7 @@ public class TransferenciaServiceImpl implements TransferenciaService {
     public List<TransferenciaResponse> findByTransferenciaContaOrigem(Long idContaOrigem) {
         List<Transferencia> listaTransferencia = repository.findByContaOrigemId(idContaOrigem);
         List<TransferenciaResponse> listaRetorno = new ArrayList<>();
-        listaTransferencia.stream().forEach( transferencia -> {
+        listaTransferencia.stream().forEach( transferencia ->
             listaRetorno.add(new TransferenciaResponse(transferencia.getContaOrigem().getCliente().getNome(),
                     transferencia.getContaDestino().getCliente().getNome(),
                     transferencia.getContaOrigem().getBanco().getNome(),
@@ -41,8 +41,8 @@ public class TransferenciaServiceImpl implements TransferenciaService {
                     transferencia.getTipo().getTipo(),
                     transferencia.getComissaoAplicada(),
                     transferencia.getValor(),
-                    transferencia.getDataCriacao()));
-        });
+                    transferencia.getDataCriacao()))
+        );
         return listaRetorno;
     }
 
@@ -52,7 +52,7 @@ public class TransferenciaServiceImpl implements TransferenciaService {
         Transferencia transferencia = validarTransferencia(idContaOrigem,idContaDestino,transferenciaRequest);
         contaService.updateConta(transferencia.getContaOrigem());
         repository.save(transferencia);
-        return "Transferência Realizada";
+        return "Transferencia Realizada";
     }
 
     private Transferencia validarTransferencia(Long idContaOrigem, Long idContaDestino,
@@ -77,7 +77,7 @@ public class TransferenciaServiceImpl implements TransferenciaService {
 
     void validarLimites(Conta contaOrigem, Conta contaDestino, double valor, ParametroTransferencia parametro){
         if(contaOrigem.getSaldo() <= (valor+parametro.getComissao())){
-            throw new ContaException("Conta Origem não possue saldo para a transferencia");
+            throw new ContaException("Conta Origem nao possue saldo para a transferencia");
         }
         if(!contaOrigem.getBanco().getId().equals(contaDestino.getBanco().getId())){
             LocalDateTime dataInicio = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0);
@@ -87,7 +87,7 @@ public class TransferenciaServiceImpl implements TransferenciaService {
                     .mapToDouble(Transferencia::getValor)
                     .sum();
            if((somaTransferencia+valor) > parametro.getLimiteDiario()){
-               throw new ContaException("Conta Origem não possue limites para a transferencia");
+               throw new ContaException("Conta Origem nao possue limites para a transferencia");
            }
         }
         contaOrigem.setSaldo(contaOrigem.getSaldo()-(valor+parametro.getComissao()));

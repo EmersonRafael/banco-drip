@@ -2,7 +2,7 @@ package com.drip.banco.exception;
 
 public class TipoTrasnferenciaException
         extends RuntimeException {
-    private String message;
+    String message;
     public TipoTrasnferenciaException() {}
     public TipoTrasnferenciaException(String msg)
     {
