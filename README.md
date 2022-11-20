@@ -1,7 +1,7 @@
 # banco-drip
 
-1 - Execultar o docker-compose.yml para subir o postgres
-    Versionamento das tabelas estão com flyway
+1 - Execultar o docker-compose.yml para subir o postgres,
+    versionamento das tabelas estão com flyway
 
 2 - Como Testar
 http://localhost:8080/swagger-ui/index.html#
